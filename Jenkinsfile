@@ -13,6 +13,28 @@ pipeline {
                         sh 'cd build && cmake .. -DCMAKE_BUILD_TYPE=Debug -DTESTING_ENABLED=ON && cmake --build . --config Debug && ./test_rule'
                     }
                 }
+                stage('Unit test on linux') {
+                    agent {
+                        kubernetes {
+                        label 'linux-x86_64'
+                        defaultContainer 'builder'
+                        yaml """
+kind: Pod
+metadata:
+  name: msz-golang
+spec:
+  containers:
+  - name: builder
+    image: mszg/docker-ubuntu-dev:
+    imagePullPolicy: Always
+    tty: true"""
+                        } // kubernetes
+                    } // agent
+                    steps {
+                        sh 'make clean && mkdir -p build'
+                        sh 'cd build && cmake .. -DCMAKE_BUILD_TYPE=Debug -DTESTING_ENABLED=ON && cmake --build . --config Debug && ./test_rule'
+                    }
+                }
             }
         }
         stage('Build') {
