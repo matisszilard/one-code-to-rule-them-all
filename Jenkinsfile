@@ -9,7 +9,7 @@ pipeline {
                         label 'macos'
                     }
                     steps {
-                        sh 'mkdir -p build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Debug -DTESTING_ENABLED=ON && cmake --build . --config Debug && ./test_rule'
+                        sh 'make clean && mkdir -p build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Debug -DTESTING_ENABLED=ON && cmake --build . --config Debug && ./test_rule'
                     }
                 }
             }
