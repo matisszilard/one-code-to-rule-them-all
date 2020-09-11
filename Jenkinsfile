@@ -21,9 +21,11 @@ pipeline {
                         label 'macos'
                     }
                     steps {
-                        sh 'mkdir -p build && cd build'
-                        sh 'cmake .. -DCMAKE_BUILD_TYPE=Debug'
-                        sh 'cmake --build . --config Debug'
+                        sh '
+                            mkdir -p build && cd build
+                            cmake .. -DCMAKE_BUILD_TYPE=Debug
+                            cmake --build . --config Debug
+                            '
                     }
                 }
                 stage('build-ios-os') {
@@ -31,9 +33,11 @@ pipeline {
                         label 'macos'
                     }
                     steps {
-                        sh 'mkdir -p build && cd build'
-                        sh 'cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=../toolchains/iOS.toolchain.cmake -GXcode'
-                        sh 'cmake --build . --config Debug'
+                        sh '
+                            mkdir -p build && cd build
+                            cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=../toolchains/iOS.toolchain.cmake -GXcode
+                            cmake --build . --config Debug
+                            '
                     }
                 }
                 stage('build-ios-simulator64') {
@@ -41,9 +45,11 @@ pipeline {
                         label 'macos'
                     }
                     steps {
-                        sh 'mkdir -p build && cd build'
-                        sh 'cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=../toolchains/iOS.toolchain.cmake -GXcode'
-                        sh 'cmake --build . --config Debug'
+                        sh '
+                            mkdir -p build && cd build
+                            cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=../toolchains/iOS.toolchain.cmake -GXcode
+                            cmake --build . --config Debug
+                        '
                     }
                 }
             }
