@@ -9,7 +9,8 @@ pipeline {
                         label 'macos'
                     }
                     steps {
-                        sh 'make clean && mkdir -p build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Debug -DTESTING_ENABLED=ON && cmake --build . --config Debug && ./test_rule'
+                        sh 'make clean && mkdir -p build'
+                        sh 'cd build && cmake .. -DCMAKE_BUILD_TYPE=Debug -DTESTING_ENABLED=ON && cmake --build . --config Debug && ./test_rule'
                     }
                 }
             }
@@ -21,7 +22,8 @@ pipeline {
                         label 'macos'
                     }
                     steps {
-                        sh 'make clean && mkdir -p build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Debug && cmake --build . --config Debug'
+                        sh 'make clean && mkdir -p build'
+                        sh 'cd build && cmake .. -DCMAKE_BUILD_TYPE=Debug && cmake --build . --config Debug'
                     }
                 }
                 stage('build-ios-os') {
@@ -29,7 +31,8 @@ pipeline {
                         label 'macos'
                     }
                     steps {
-                        sh 'make clean && mkdir -p build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=../toolchains/iOS.toolchain.cmake -GXcode -DPLATFORM=OS && cmake --build . --config Debug'
+                        sh 'make clean && mkdir -p build'
+                        sh 'cd build && cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=../toolchains/iOS.toolchain.cmake -GXcode -DPLATFORM=OS && cmake --build . --config Debug'
                     }
                 }
                 stage('build-ios-simulator64') {
@@ -37,7 +40,8 @@ pipeline {
                         label 'macos'
                     }
                     steps {
-                        sh 'make clean && mkdir -p build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=../toolchains/iOS.toolchain.cmake -GXcode -DPLATFORM=SIMULATOR64 && cmake --build . --config Debug'
+                        sh 'make clean && mkdir -p build'
+                        sh 'cd build && cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=../toolchains/iOS.toolchain.cmake -GXcode -DPLATFORM=SIMULATOR64 && cmake --build . --config Debug'
                     }
                 }
             }
