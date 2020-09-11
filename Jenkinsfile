@@ -9,9 +9,9 @@ pipeline {
                         label 'macos'
                     }
                     steps {
-                        sh 'mkdir -p build && cd build'
-                        sh 'cmake .. -DCMAKE_BUILD_TYPE=Debug'
-                        sh 'cmake --build . --config ${BUILD_TYPE}'
+                        sh 'mkdir -p build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Debug && cmake --build . --config Debug && ./test-rule'
+                        // sh 'cmake .. -DCMAKE_BUILD_TYPE=Debug'
+                        // sh 'cmake --build . --config Debug'
                     }
                 }
             }
@@ -25,7 +25,7 @@ pipeline {
                     steps {
                         sh 'mkdir -p build && cd build'
                         sh 'cmake .. -DCMAKE_BUILD_TYPE=Debug'
-                        sh 'cmake --build . --config ${BUILD_TYPE}'
+                        sh 'cmake --build . --config Debug'
                     }
                 }
                 stage('build-ios-os') {
@@ -35,7 +35,7 @@ pipeline {
                     steps {
                         sh 'mkdir -p build && cd build'
                         sh 'cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=../toolchains/iOS.toolchain.cmake -GXcode'
-                        sh 'cmake --build . --config ${BUILD_TYPE}'
+                        sh 'cmake --build . --config Debug'
                     }
                 }
                 stage('build-ios-simulator64') {
@@ -45,7 +45,7 @@ pipeline {
                     steps {
                         sh 'mkdir -p build && cd build'
                         sh 'cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=../toolchains/iOS.toolchain.cmake -GXcode'
-                        sh 'cmake --build . --config ${BUILD_TYPE}'
+                        sh 'cmake --build . --config Debug'
                     }
                 }
             }
