@@ -4,7 +4,7 @@
 
 void test_get_the_meaning_of_life()
 {
-    EXPECT_EQ(41, get_the_meaning_of_life())
+    EXPECT_EQ(42, get_the_meaning_of_life())
 }
 
 void run_tests () {
