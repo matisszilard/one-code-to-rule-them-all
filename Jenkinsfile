@@ -25,7 +25,7 @@ metadata:
 spec:
   containers:
   - name: builder
-    image: mszg/docker-ubuntu-dev:
+    image: mszg/docker-ubuntu-dev:latest
     imagePullPolicy: Always
     tty: true"""
                         } // kubernetes
