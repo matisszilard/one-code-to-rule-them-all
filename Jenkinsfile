@@ -9,9 +9,7 @@ pipeline {
                         label 'macos'
                     }
                     steps {
-                        sh 'mkdir -p build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Debug && cmake --build . --config Debug && ./test-rule'
-                        // sh 'cmake .. -DCMAKE_BUILD_TYPE=Debug'
-                        // sh 'cmake --build . --config Debug'
+                        sh 'mkdir -p build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Debug && cmake --build . --config Debug && ./test_rule'
                     }
                 }
             }
