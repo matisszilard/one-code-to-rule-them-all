@@ -18,16 +18,7 @@ pipeline {
                         kubernetes {
                         label 'linux-x86_64'
                         defaultContainer 'builder'
-                        yaml """
-kind: Pod
-metadata:
-  name: msz-golang
-spec:
-  containers:
-  - name: builder
-    image: mszg/docker-ubuntu-dev:latest
-    imagePullPolicy: Always
-    tty: true"""
+                        yamlFile 'linux.yaml'
                         } // kubernetes
                     } // agent
                     steps {
