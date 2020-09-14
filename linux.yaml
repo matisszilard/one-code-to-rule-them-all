@@ -1,6 +1,6 @@
 kind: Pod
 metadata:
-  name: msz-golang
+  name: msz-c-dev
 spec:
   containers:
   - name: builder

@@ -1,6 +1,12 @@
 pipeline {
     agent none
 
+    podTemplate {
+        label 'linux-amd64'
+        defaultContainer 'builder'
+        yamlFile 'linux.yaml'
+    }
+
     stages {
         stage('Test') {
             parallel {
@@ -16,9 +22,9 @@ pipeline {
                 stage('Unit test on linux') {
                     agent {
                         kubernetes {
-                        label 'linux-x86_64'
-                        defaultContainer 'builder'
-                        yamlFile 'linux.yaml'
+                            label 'linux-amd64'
+                            defaultContainer 'builder'
+                            yamlFile 'linux.yaml'
                         } // kubernetes
                     } // agent
                     steps {
@@ -33,6 +39,15 @@ pipeline {
                 stage('build-darwin-x86_64') {
                     agent {
                         label 'macos'
+                    }
+                    steps {
+                        sh 'make clean && mkdir -p build'
+                        sh 'cd build && cmake .. -DCMAKE_BUILD_TYPE=Debug && cmake --build . --config Debug'
+                    }
+                }
+                stage('build-linux-amd64') {
+                    agent {
+                        label 'linux-amd64'
                     }
                     steps {
                         sh 'make clean && mkdir -p build'
