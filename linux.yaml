@@ -1,0 +1,9 @@
+kind: Pod
+metadata:
+  name: msz-golang
+spec:
+  containers:
+  - name: builder
+    image: mszg/docker-ubuntu-dev:v0.1.0
+    imagePullPolicy: Always
+    tty: true
