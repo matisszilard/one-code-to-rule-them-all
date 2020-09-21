@@ -1,12 +1,6 @@
 pipeline {
     agent none
 
-    podTemplate {
-        label 'linux-amd64'
-        defaultContainer 'builder'
-        yamlFile 'linux.yaml'
-    }
-
     stages {
         stage('Test') {
             parallel {
@@ -47,7 +41,11 @@ pipeline {
                 }
                 stage('build-linux-amd64') {
                     agent {
-                        label 'linux-amd64'
+                        kubernetes {
+                            label 'linux-amd64'
+                            defaultContainer 'builder'
+                            yamlFile 'linux.yaml'
+                        } // kubernetes
                     }
                     steps {
                         sh 'make clean && mkdir -p build'
