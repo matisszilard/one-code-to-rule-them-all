@@ -80,11 +80,6 @@ pipeline {
                         sh 'cd build && cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=../toolchains/iOS.toolchain.cmake -GXcode -DPLATFORM=SIMULATOR64 && cmake --build . --config Debug'
                     }
                 }
-                post {
-                    success {
-                        archiveArtifacts artifacts: 'build/librule.a', fingerprint: true
-                    }
-                }
             }
         }
     }
