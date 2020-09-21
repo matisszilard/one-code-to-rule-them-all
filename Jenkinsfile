@@ -38,6 +38,11 @@ pipeline {
                         sh 'make clean && mkdir -p build'
                         sh 'cd build && cmake .. -DCMAKE_BUILD_TYPE=Debug && cmake --build . --config Debug'
                     }
+                    post {
+                        success {
+                            archiveArtifacts artifacts: 'build/librule.a', fingerprint: true
+                        }
+                    }
                 }
                 stage('build-linux-amd64') {
                     agent {
@@ -50,6 +55,11 @@ pipeline {
                     steps {
                         sh 'make clean && mkdir -p build'
                         sh 'cd build && cmake .. -DCMAKE_BUILD_TYPE=Debug && cmake --build . --config Debug'
+                    }
+                    post {
+                        success {
+                            archiveArtifacts artifacts: 'build/librule.a', fingerprint: true
+                        }
                     }
                 }
                 stage('build-ios-os') {
@@ -68,6 +78,11 @@ pipeline {
                     steps {
                         sh 'make clean && mkdir -p build'
                         sh 'cd build && cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=../toolchains/iOS.toolchain.cmake -GXcode -DPLATFORM=SIMULATOR64 && cmake --build . --config Debug'
+                    }
+                }
+                post {
+                    success {
+                        archiveArtifacts artifacts: 'build/librule.a', fingerprint: true
                     }
                 }
             }
