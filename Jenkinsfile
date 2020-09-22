@@ -39,7 +39,7 @@ pipeline {
                         label 'macos'
                     }
                     steps {
-                        #sh 'BUILD_TYPE=Release'
+                        //sh 'BUILD_TYPE=Release'
                         gv.buildMacOS()
                     }
                     post {
