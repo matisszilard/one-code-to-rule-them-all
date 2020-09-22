@@ -1,3 +1,4 @@
+#!/usr/bin/env groovy
 
 buildLinux() {
     sh 'make clean && mkdir -p build'
