@@ -57,8 +57,8 @@ pipeline {
                         } // kubernetes
                     }
                     steps {
-                        #sh 'BUILD_TYPE=Release'
-                        #gv.buildLinux()
+                        //sh 'BUILD_TYPE=Release'
+                        //gv.buildLinux()
                     }
                     post {
                         success {
@@ -71,9 +71,9 @@ pipeline {
                         label 'macos'
                     }
                     steps {
-                        #sh 'PLATFORM=OS'
-                        #sh 'BUILD_TYPE=Release'
-                        #gv.buildiOS()
+                        //sh 'PLATFORM=OS'
+                        //sh 'BUILD_TYPE=Release'
+                        //gv.buildiOS()
                     }
                     post {
                         success {
@@ -86,9 +86,9 @@ pipeline {
                         label 'macos'
                     }
                     steps {
-                        #sh 'PLATFORM=SIMULATOR64'
-                        #sh 'BUILD_TYPE=Release'
-                        #gv.buildiOS()
+                        //sh 'PLATFORM=SIMULATOR64'
+                        //sh 'BUILD_TYPE=Release'
+                        //gv.buildiOS()
                     }
                     post {
                         success {
