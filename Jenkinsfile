@@ -79,7 +79,7 @@ pipeline {
                     steps {
                         script {
                             BUILD_TYPE="Release"
-                            PLATFORM=OS
+                            PLATFORM="OS"
                             gv.buildiOS()
                         }
                     }
@@ -96,7 +96,7 @@ pipeline {
                     steps {
                         script {
                             BUILD_TYPE="Release"
-                            PLATFORM=SIMULATOR64
+                            PLATFORM="SIMULATOR64"
                             gv.buildiOS()
                         }
                     }
