@@ -14,7 +14,9 @@ def buildMacOS(buildType = "Release") {
 }
 
 def buildiOS(platform, buildType = "Release") {
-    sh 'echo BUILD_TYPE [${BUILD_TYPE}]'
+    sh 'echo BUILD_TYPE [${buildType}]'
+    sh 'echo BUILD_TYPE ['+ buildType + ']'
+    println(buildType);
     sh 'make clean && mkdir -p build'
     sh 'cd build && cmake .. -DCMAKE_BUILD_TYPE=${buildType} -DCMAKE_TOOLCHAIN_FILE=../toolchains/iOS.toolchain.cmake -GXcode -DPLATFORM=${platform} && cmake --build . --config ${buildType}'
     sh 'mv ./build/librule.a librule-ios-${platform}.a'
