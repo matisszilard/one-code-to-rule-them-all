@@ -40,8 +40,6 @@ pipeline {
                     }
                     steps {
                         script {
-                            BUILD_TYPE="Release"
-                            sh 'echo BUILD_TYPE [${BUILD_TYPE}]'
                             gv = load "Jenkinsfile.groovy"
                             gv.buildMacOS()
                         }
@@ -62,7 +60,6 @@ pipeline {
                     }
                     steps {
                         script {
-                            BUILD_TYPE="Release"
                             gv.buildLinux()
                         }
                     }
@@ -78,9 +75,7 @@ pipeline {
                     }
                     steps {
                         script {
-                            BUILD_TYPE="Release"
-                            PLATFORM="OS"
-                            gv.buildiOS()
+                            gv.buildiOS("OS")
                         }
                     }
                     post {
@@ -95,9 +90,7 @@ pipeline {
                     }
                     steps {
                         script {
-                            BUILD_TYPE="Release"
-                            PLATFORM="SIMULATOR64"
-                            gv.buildiOS()
+                            gv.buildiOS("SIMULATOR64")
                         }
                     }
                     post {
