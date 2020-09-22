@@ -39,7 +39,6 @@ pipeline {
                         label 'macos'
                     }
                     steps {
-                        def gv = load "Jenkins.groovy"
                         sh 'BUILD_TYPE=Release'
                         gv.buildMacOS()
                     }

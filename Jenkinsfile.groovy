@@ -1,4 +1,3 @@
-#!/usr/bin/env groovy
 
 buildLinux() {
     sh 'make clean && mkdir -p build'
@@ -17,3 +16,5 @@ buildiOS() {
     sh 'cd build && cmake .. -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DCMAKE_TOOLCHAIN_FILE=../toolchains/iOS.toolchain.cmake -GXcode -DPLATFORM=${PLATFORM} && cmake --build . --config ${BUILD_TYPE}'
     sh 'mv ./build/librule.a librule-ios-${PLATFORM}.a'
 }
+
+return this
