@@ -41,7 +41,7 @@ pipeline {
                     steps {
                             sh 'BUILD_TYPE=Release'
                         script {
-                            gv = load "Jenkins.groovy"
+                            gv = load "Jenkinsfile.groovy"
                             gv.buildMacOS()
                         }
                     }
