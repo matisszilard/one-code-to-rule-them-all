@@ -39,15 +39,16 @@ pipeline {
                         label 'macos'
                     }
                     steps {
-                            sh 'BUILD_TYPE=Release'
                         script {
+                            BUILD_TYPE="Release"
+                            sh 'echo BUILD_TYPE [${BUILD_TYPE}]'
                             gv = load "Jenkinsfile.groovy"
                             gv.buildMacOS()
                         }
                     }
                     post {
                         success {
-                            archiveArtifacts artifacts: 'build/librule-darwin-x86_64.a', fingerprint: true
+                            archiveArtifacts artifacts: 'librule-darwin-x86_64.a', fingerprint: true
                         }
                     }
                 }
@@ -60,14 +61,14 @@ pipeline {
                         } // kubernetes
                     }
                     steps {
-                        sh 'BUILD_TYPE=Release'
                         script {
+                            BUILD_TYPE="Release"
                             gv.buildLinux()
                         }
                     }
                     post {
                         success {
-                            archiveArtifacts artifacts: 'build/librule-linux-amd64.a', fingerprint: true
+                            archiveArtifacts artifacts: 'librule-linux-amd64.a', fingerprint: true
                         }
                     }
                 }
@@ -76,15 +77,15 @@ pipeline {
                         label 'macos'
                     }
                     steps {
-                        sh 'PLATFORM=OS'
-                        sh 'BUILD_TYPE=Release'
                         script {
+                            BUILD_TYPE="Release"
+                            PLATFORM=OS
                             gv.buildiOS()
                         }
                     }
                     post {
                         success {
-                            archiveArtifacts artifacts: 'build/librule-ios-OS.a', fingerprint: true
+                            archiveArtifacts artifacts: 'librule-ios-OS.a', fingerprint: true
                         }
                     }
                 }
@@ -93,15 +94,15 @@ pipeline {
                         label 'macos'
                     }
                     steps {
-                        sh 'PLATFORM=SIMULATOR64'
-                        sh 'BUILD_TYPE=Release'
                         script {
+                            BUILD_TYPE="Release"
+                            PLATFORM=SIMULATOR64
                             gv.buildiOS()
                         }
                     }
                     post {
                         success {
-                            archiveArtifacts artifacts: 'build/librule-ios-SIMULATOR64.a', fingerprint: true
+                            archiveArtifacts artifacts: 'librule-ios-SIMULATOR64.a', fingerprint: true
                         }
                     }
                 }
