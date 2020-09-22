@@ -35,12 +35,12 @@ pipeline {
                         label 'macos'
                     }
                     steps {
-                        sh 'make clean && mkdir -p build'
-                        sh 'cd build && cmake .. -DCMAKE_BUILD_TYPE=Debug && cmake --build . --config Debug'
+                        sh 'BUILD_TYPE=Release'
+                        gv.buildMacOS()
                     }
                     post {
                         success {
-                            archiveArtifacts artifacts: 'build/librule.a', fingerprint: true
+                            archiveArtifacts artifacts: 'build/librule-darwin-x86_64.a', fingerprint: true
                         }
                     }
                 }
@@ -53,12 +53,12 @@ pipeline {
                         } // kubernetes
                     }
                     steps {
-                        sh 'make clean && mkdir -p build'
-                        sh 'cd build && cmake .. -DCMAKE_BUILD_TYPE=Debug && cmake --build . --config Debug'
+                        sh 'BUILD_TYPE=Release'
+                        gv.buildLinux()
                     }
                     post {
                         success {
-                            archiveArtifacts artifacts: 'build/librule.a', fingerprint: true
+                            archiveArtifacts artifacts: 'build/librule-linux-amd64.a', fingerprint: true
                         }
                     }
                 }
@@ -67,8 +67,14 @@ pipeline {
                         label 'macos'
                     }
                     steps {
-                        sh 'make clean && mkdir -p build'
-                        sh 'cd build && cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=../toolchains/iOS.toolchain.cmake -GXcode -DPLATFORM=OS && cmake --build . --config Debug'
+                        sh 'PLATFORM=OS'
+                        sh 'BUILD_TYPE=Release'
+                        gv.buildiOS()
+                    }
+                    post {
+                        success {
+                            archiveArtifacts artifacts: 'build/librule-ios-OS.a', fingerprint: true
+                        }
                     }
                 }
                 stage('build-ios-simulator64') {
@@ -76,8 +82,14 @@ pipeline {
                         label 'macos'
                     }
                     steps {
-                        sh 'make clean && mkdir -p build'
-                        sh 'cd build && cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=../toolchains/iOS.toolchain.cmake -GXcode -DPLATFORM=SIMULATOR64 && cmake --build . --config Debug'
+                        sh 'PLATFORM=SIMULATOR64'
+                        sh 'BUILD_TYPE=Release'
+                        gv.buildiOS()
+                    }
+                    post {
+                        success {
+                            archiveArtifacts artifacts: 'build/librule-ios-SIMULATOR64.a', fingerprint: true
+                        }
                     }
                 }
             }
