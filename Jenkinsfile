@@ -1,5 +1,7 @@
 #!/usr/bin/env groovy
 
+def gv
+
 pipeline {
     agent none
 
@@ -37,9 +39,9 @@ pipeline {
                         label 'macos'
                     }
                     steps {
-                        sh 'BUILD_TYPE=Release'
+                            sh 'BUILD_TYPE=Release'
                         script {
-                            def gv = load "Jenkins.groovy"
+                            gv = load "Jenkins.groovy"
                             gv.buildMacOS()
                         }
                     }
