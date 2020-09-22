@@ -1,17 +1,11 @@
 #!/usr/bin/env groovy
 
+def gv = load "Jenkins.groovy"
+
 pipeline {
     agent none
 
     stages {
-        stage ('Prepare') {
-            steps {
-                script {
-                    def gv = load "Jenkins.groovy"
-                }
-            }
-        }
-
         stage('Test') {
             parallel {
                 stage('Unit test on macOS') {
