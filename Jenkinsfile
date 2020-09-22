@@ -37,9 +37,9 @@ pipeline {
                         label 'macos'
                     }
                     steps {
+                        sh 'BUILD_TYPE=Release'
                         script {
                             def gv = load "Jenkins.groovy"
-                            sh 'BUILD_TYPE=Release'
                             gv.buildMacOS()
                         }
                     }
@@ -58,8 +58,8 @@ pipeline {
                         } // kubernetes
                     }
                     steps {
+                        sh 'BUILD_TYPE=Release'
                         script {
-                            sh 'BUILD_TYPE=Release'
                             gv.buildLinux()
                         }
                     }
@@ -74,9 +74,9 @@ pipeline {
                         label 'macos'
                     }
                     steps {
+                        sh 'PLATFORM=OS'
+                        sh 'BUILD_TYPE=Release'
                         script {
-                            sh 'PLATFORM=OS'
-                            sh 'BUILD_TYPE=Release'
                             gv.buildiOS()
                         }
                     }
@@ -91,9 +91,9 @@ pipeline {
                         label 'macos'
                     }
                     steps {
+                        sh 'PLATFORM=SIMULATOR64'
+                        sh 'BUILD_TYPE=Release'
                         script {
-                            sh 'PLATFORM=SIMULATOR64'
-                            sh 'BUILD_TYPE=Release'
                             gv.buildiOS()
                         }
                     }
