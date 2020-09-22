@@ -1,4 +1,4 @@
-def gv
+#def gv
 
 pipeline {
     agent none
@@ -7,7 +7,7 @@ pipeline {
         stage ('Prepare') {
             steps {
                 script {
-                    gv = load "Jenkins.groovy"
+                    def gv = load "Jenkins.groovy"
                 }
             }
         }
